@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "required": [
+                "name",
+                "content",
+                "publishingDate"
+            ],
+            "properties": {
+                "content": {
+                    "description": "content of this article",
+                    "type": "string",
+                    "x-go-name": "Content"
+                },
+                "id": {
+                    "description": "id of the article",
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "ID"
+                },
+                "lastModification": {
+                    "description": "last modification date of this article",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-go-name": "LastModification"
+                },
+                "name": {
+                    "description": "name of the article",
+                    "type": "string",
+                    "x-go-name": "Name"
+                },
+                "publishingDate": {
+                    "description": "time of publishing of of this article",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-go-name": "PublishingDate"
+                },
+                "read": {
+                    "description": "defines if the user has read the article",
+                    "type": "boolean",
+                    "x-go-name": "Read"
+                }
+            },
+            "x-go-package": "groupalarm.com/go/newshub/api/services"
+        }
+    }
+}

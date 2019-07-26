@@ -1,0 +1,214 @@
+{
+    "title": "groupalarm Newshub API",
+    "description": "The newshub service implements all newshub functions for GroupAlarm\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+    "docsUrl": "",
+    "url": "https://app.groupalarm.com/api/v1",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://app.groupalarm.com/api/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "auth_API_Token": {
+                "label": "API-TOKEN (API_Token)",
+                "viewClass": "TextFieldView",
+                "note": "To use this API, you need an API-Token from the RBAC settings of your GroupAlarm organization. Place the token inside the HTTP-Header `API-Token` for every request, otherwise the API will return an \"401 Unauthorized\" error for your request."
+            },
+            "auth_Personal-Access-Token": {
+                "label": "Personal-Access-Token (Personal-Access-Token)",
+                "viewClass": "TextFieldView",
+                "note": "To use this API, you need a Personal Access Token from your profile settings. Place the token inside the HTTP-Header `Personal-Access-Token` for every request, otherwise the API will return an \"401 Unauthorized\" error for your request."
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "CreateArticle": {
+            "main": "./lib/actions/CreateArticle.js",
+            "title": "CreateArticle",
+            "description": "Inserts a new article in the newshub (only for admins)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CreateArticle.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetArticle": {
+            "main": "./lib/actions/GetArticle.js",
+            "title": "GetArticle",
+            "description": "Returns the requested article with the passed id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetArticle.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteArticle": {
+            "main": "./lib/actions/DeleteArticle.js",
+            "title": "DeleteArticle",
+            "description": "Deletes an article from the newshub (only for admins)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteArticle.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetArticles": {
+            "main": "./lib/actions/GetArticles.js",
+            "title": "GetArticles",
+            "description": "Returns paginated global articles from the newshub",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetArticles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetPublished": {
+            "main": "./lib/actions/GetPublished.js",
+            "title": "GetPublished",
+            "description": "Returns all paginated published articles from the newshub",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetPublished.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetUnreadArticles": {
+            "main": "./lib/actions/GetUnreadArticles.js",
+            "title": "GetUnreadArticles",
+            "description": "Returns all unread articles from the newshub",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetUnreadArticles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetUserReadArticles": {
+            "main": "./lib/actions/GetUserReadArticles.js",
+            "title": "GetUserReadArticles",
+            "description": "Returns the id of the last read article for the current user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetUserReadArticles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpsertUserReadArticles": {
+            "main": "./lib/actions/UpsertUserReadArticles.js",
+            "title": "UpsertUserReadArticles",
+            "description": "Updates the read articles for the current user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpsertUserReadArticles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AddUserReadArticle": {
+            "main": "./lib/actions/AddUserReadArticle.js",
+            "title": "AddUserReadArticle",
+            "description": "Adds the passed article id to the read articles for this user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AddUserReadArticle.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetUserUnreadArticlesCount": {
+            "main": "./lib/actions/GetUserUnreadArticlesCount.js",
+            "title": "GetUserUnreadArticlesCount",
+            "description": "Returns the amount of unread articles for the current user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetUserUnreadArticlesCount.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
